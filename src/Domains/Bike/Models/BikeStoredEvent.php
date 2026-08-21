@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Domains\Bike\Models;
 
 use Spatie\EventSourcing\StoredEvents\Models\EloquentStoredEvent;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domains\Bike\Repositories;
 
-use App\Models\BikeStoredEvent;
+use Domains\Bike\Models\BikeStoredEvent;
 use Spatie\EventSourcing\StoredEvents\Repositories\EloquentStoredEventRepository;
 
 final class BikeStoredEventRepository extends EloquentStoredEventRepository

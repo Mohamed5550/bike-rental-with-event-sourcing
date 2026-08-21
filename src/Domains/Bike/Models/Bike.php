@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Domains\Bike\Models;
 
 use App\Enums\BikeStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
