@@ -4,6 +4,7 @@ import {
     useTable,
 } from '@tanstack/react-table';
 import type { ColumnDef } from '@tanstack/react-table';
+import { Bike as BikeIcon, Plus } from 'lucide-react';
 import { create as bikesCreate } from '@/routes/bikes';
 
 type Bike = {
@@ -67,6 +68,26 @@ const columns: ColumnDef<typeof features, Bike>[] = [
     {
         accessorKey: 'status',
         header: 'Status',
+        cell: ({ row }) => {
+            const status = row.original.status;
+
+            const styles = {
+                available: 'bg-green-100 text-green-700',
+                rented: 'bg-yellow-100 text-yellow-700',
+                maintenance: 'bg-red-100 text-red-700',
+            };
+
+            return (
+                <span
+                    className={`inline-flex rounded-full px-2.5 py-1 text-xs font-medium ${
+                        styles[status as keyof typeof styles] ??
+                        'bg-gray-100 text-gray-700'
+                    }`}
+                >
+                    {status}
+                </span>
+            );
+        },
     },
 ];
 
@@ -79,22 +100,37 @@ export default function Index({ bikes }: Props) {
 
     return (
         <div className="p-6">
-            <div className="mb-6 flex items-center justify-between">
-                <h1 className="text-2xl font-bold">
-                    Bikes
-                </h1>
+            {/* Header */}
+            <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                        <BikeIcon className="h-5 w-5 text-primary" />
+                    </div>
+
+                    <div>
+                        <h1 className="text-2xl font-semibold tracking-tight">
+                            Bikes
+                        </h1>
+
+                        <p className="text-sm text-muted-foreground">
+                            Manage your bike rental fleet.
+                        </p>
+                    </div>
+                </div>
 
                 <Link
                     href={bikesCreate().url}
-                    className="rounded-md bg-black px-4 py-2 text-white"
+                    className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
                 >
+                    <Plus className="h-4 w-4" />
                     Add Bike
                 </Link>
             </div>
 
-            <div className="overflow-hidden rounded-lg border">
+            {/* Table */}
+            <div className="overflow-hidden rounded-xl border bg-card shadow-sm">
                 <table className="w-full">
-                    <thead className="border-b bg-gray-50">
+                    <thead className="border-b bg-muted/40">
                         {table.getHeaderGroups().map((headerGroup) => (
                             <tr key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => (
@@ -119,7 +155,7 @@ export default function Index({ bikes }: Props) {
                         {table.getRowModel().rows.map((row) => (
                             <tr
                                 key={row.id}
-                                className="border-b last:border-0"
+                                className="border-b transition last:border-0 hover:bg-muted/30"
                             >
                                 {row.getAllCells().map((cell) => (
                                     <td
@@ -138,9 +174,17 @@ export default function Index({ bikes }: Props) {
                             <tr>
                                 <td
                                     colSpan={columns.length}
-                                    className="py-8 text-center text-gray-500"
+                                    className="py-12 text-center"
                                 >
-                                    No bikes found.
+                                    <div className="space-y-1">
+                                        <p className="font-medium">
+                                            No bikes found
+                                        </p>
+
+                                        <p className="text-sm text-muted-foreground">
+                                            Add your first bike to the fleet.
+                                        </p>
+                                    </div>
                                 </td>
                             </tr>
                         )}
@@ -148,8 +192,9 @@ export default function Index({ bikes }: Props) {
                 </table>
             </div>
 
-            <div className="mt-4 flex items-center justify-between">
-                <p className="text-sm text-gray-500">
+            {/* Footer */}
+            <div className="flex items-center justify-between">
+                <p className="text-sm text-muted-foreground">
                     Showing {bikes.data.length} of {bikes.total} bikes
                 </p>
 
@@ -163,11 +208,11 @@ export default function Index({ bikes }: Props) {
                                     router.get(link.url);
                                 }
                             }}
-                            className={`rounded border px-3 py-1 text-sm ${
+                            className={`rounded-md border px-3 py-1.5 text-sm transition ${
                                 link.active
-                                    ? 'bg-black text-white'
-                                    : 'bg-white'
-                            }`}
+                                    ? 'bg-primary text-primary-foreground'
+                                    : 'bg-background hover:bg-muted'
+                            } disabled:cursor-not-allowed disabled:opacity-50`}
                             dangerouslySetInnerHTML={{
                                 __html: link.label,
                             }}

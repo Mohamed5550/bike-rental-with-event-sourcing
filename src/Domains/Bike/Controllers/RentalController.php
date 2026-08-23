@@ -6,6 +6,8 @@ namespace Domains\Bike\Controllers;
 
 use App\Http\Controllers\Controller;
 use Domains\Bike\Jobs\RentBike;
+use Domains\Bike\Jobs\ReturnBike;
+use Domains\Bike\Models\Rental;
 use Domains\Bike\Requests\RentBikeRequest;
 use Domains\Bike\Services\BikeService;
 use Domains\Bike\Services\RentalService;
@@ -43,5 +45,12 @@ class RentalController extends Controller
         );
 
         return redirect()->route('rentals.index');
+    }
+
+    public function returnRental(Rental $rental): void
+    {
+        ReturnBike::dispatchSync(
+            rentalId: $rental->id
+        );
     }
 }

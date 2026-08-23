@@ -9,6 +9,10 @@ Route::inertia('/', 'welcome')->name('home');
 Route::middleware(['auth', 'verified'])->prefix('dashboard')->group( function () {
     Route::inertia('/', 'dashboard')->name('dashboard');
     Route::resource('/bikes', BikeController::class);
+    Route::post(
+        '/rentals/{rental}/return',
+        [RentalController::class, 'returnRental']
+    )->name('rentals.return');
     Route::resource('/rentals', RentalController::class);
 });
 

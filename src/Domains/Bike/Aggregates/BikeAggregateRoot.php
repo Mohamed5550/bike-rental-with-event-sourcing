@@ -79,5 +79,21 @@ final class BikeAggregateRoot extends AggregateRoot
         $this->isRented = false;
     }
 
+    public function returnBike(int $rentalId): self
+    {
+        if (! $this->isRented) {
+            throw new DomainValidationException(
+                field: 'bike_uuid',
+                message: 'The bike is not currently rented.',
+            );
+        }
+
+        $this->recordThat(
+            new BikeRentalWasEnded($rentalId)
+        );
+
+        return $this;
+    }
+
 
 }

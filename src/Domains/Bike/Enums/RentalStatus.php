@@ -9,6 +9,7 @@ enum RentalStatus: string
     case ACTIVE = 'active';
     case RETURNED = 'returned';
     case CANCELLED = 'cancelled';
+    case COMPLETED = 'completed';
 
     public function getLabel(): string
     {
@@ -16,6 +17,7 @@ enum RentalStatus: string
             self::ACTIVE => 'Active',
             self::RETURNED => 'Returned',
             self::CANCELLED => 'Cancelled',
+            self::COMPLETED => 'Completed',
         };
     }
 }
