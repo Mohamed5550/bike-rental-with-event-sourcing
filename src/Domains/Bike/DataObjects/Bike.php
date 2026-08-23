@@ -32,5 +32,19 @@ final class Bike
         ];
     }
 
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            $data['code'],
+            $data['brand'],
+            $data['model'],
+            $data['type'],
+            $data['frame_size'],
+            $data['hourly_rate'],
+            $data['purchase_date'],
+            $data['status']
+        );
+    }
+
     
 }

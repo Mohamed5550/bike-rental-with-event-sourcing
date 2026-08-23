@@ -2,7 +2,7 @@
 
 namespace Domains\Bike\Models;
 
-use App\Enums\BikeStatus;
+use Domains\Bike\Enums\BikeStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

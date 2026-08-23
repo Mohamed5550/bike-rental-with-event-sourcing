@@ -1,5 +1,6 @@
 import { Link } from '@inertiajs/react';
-import { Bike, FolderGit2, LayoutGrid } from 'lucide-react';
+import { Bike, LayoutGrid } from 'lucide-react';
+
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -13,7 +14,10 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
+
 import { dashboard } from '@/routes';
+import { index as bikesIndex } from '@/routes/bikes';
+
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -24,14 +28,12 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Bikes',
-        href: 'dashboard/bikes',
+        href: bikesIndex().url,
         icon: Bike,
-    }
+    },
 ];
 
-const footerNavItems: NavItem[] = [
-    
-];
+const footerNavItems: NavItem[] = [];
 
 export function AppSidebar() {
     return (
@@ -53,7 +55,10 @@ export function AppSidebar() {
             </SidebarContent>
 
             <SidebarFooter>
-                <NavFooter items={footerNavItems} className="mt-auto" />
+                <NavFooter
+                    items={footerNavItems}
+                    className="mt-auto"
+                />
                 <NavUser />
             </SidebarFooter>
         </Sidebar>

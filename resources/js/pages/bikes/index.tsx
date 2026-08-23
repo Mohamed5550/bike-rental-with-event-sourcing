@@ -4,6 +4,7 @@ import {
     useTable,
 } from '@tanstack/react-table';
 import type { ColumnDef } from '@tanstack/react-table';
+import { create as bikesCreate } from '@/routes/bikes';
 
 type Bike = {
     id: number;
@@ -84,7 +85,7 @@ export default function Index({ bikes }: Props) {
                 </h1>
 
                 <Link
-                    href="/bikes/create"
+                    href={bikesCreate().url}
                     className="rounded-md bg-black px-4 py-2 text-white"
                 >
                     Add Bike
