@@ -4,7 +4,7 @@ namespace Domains\Bike\Models;
 
 use Spatie\EventSourcing\StoredEvents\Models\EloquentStoredEvent;
 
-class BikeStoredEvent extends EloquentStoredEvent
+class StoredEvent extends EloquentStoredEvent
 {
-    public $table = 'bike_stored_events';
+    public $table = 'stored_events';
 }

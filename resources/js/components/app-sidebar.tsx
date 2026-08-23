@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { Bike, LayoutGrid } from 'lucide-react';
+import { Bike, LayoutGrid, CalendarClock } from 'lucide-react';
 
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
@@ -17,6 +17,7 @@ import {
 
 import { dashboard } from '@/routes';
 import { index as bikesIndex } from '@/routes/bikes';
+import { index as rentalsIndex } from '@/routes/rentals';
 
 import type { NavItem } from '@/types';
 
@@ -31,6 +32,11 @@ const mainNavItems: NavItem[] = [
         href: bikesIndex().url,
         icon: Bike,
     },
+    {
+        title: 'Rentals',
+        href: rentalsIndex().url,
+        icon: CalendarClock,
+    }
 ];
 
 const footerNavItems: NavItem[] = [];

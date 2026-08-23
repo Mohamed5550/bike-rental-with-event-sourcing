@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('bikes', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
+            $table->uuid('uuid')->unique();
             $table->string('brand');
             $table->string('model');
             $table->string('type');

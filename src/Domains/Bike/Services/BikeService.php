@@ -6,6 +6,7 @@ namespace Domains\Bike\Services;
 
 use App\Services\BaseService;
 use Domains\Bike\Repositories\BikeRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class BikeService extends BaseService
 {
@@ -13,5 +14,10 @@ class BikeService extends BaseService
         BikeRepository $repository
     ) {
         parent::__construct($repository);
+    }
+
+    public function getAvailableBikes(): Collection
+    {
+        return $this->repository->getAvailableBikes();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs\Bike;
+namespace Domains\Bike\Jobs;
 
 use Domains\Bike\Aggregates\BikeAggregateRoot;
 use Domains\Bike\DataObjects\Bike;

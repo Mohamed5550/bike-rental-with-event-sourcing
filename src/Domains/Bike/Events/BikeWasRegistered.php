@@ -10,6 +10,7 @@ use Spatie\EventSourcing\StoredEvents\ShouldBeStored;
 final class BikeWasRegistered extends ShouldBeStored
 {
     public function __construct(
-        public readonly Bike $bike
+        public readonly string $bikeUuid,
+        public readonly Bike $bike,
     ) {}
 }

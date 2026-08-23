@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Domains\Bike\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\Bike\RegisterBike;
 use Domains\Bike\DataObjects\Bike;
+use Domains\Bike\Jobs\RegisterBike;
 use Domains\Bike\Requests\StoreBikeRequest;
 use Domains\Bike\Services\BikeService;
 use Illuminate\Http\RedirectResponse;
